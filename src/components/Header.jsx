@@ -2,7 +2,6 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router'
 
-
 function Header() {
 
     const location = useLocation()
