@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+// import { getAuth } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {db} from '../firebase'
+import { serverTimestamp, setDoc, doc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+
 
 function SignUp() {
-
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -23,6 +29,30 @@ function SignUp() {
     }))
   }
 
+  async function onSubmit(e){
+    e.preventDefault()
+
+    try {
+      const auth = getAuth()
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      updateProfile(auth.currentUser, {
+        displayName: name
+      })
+      const user = userCredential.user
+      // console.log(user);
+      const fromDataCopy = {...formData}
+      delete formData.password
+      fromDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), fromDataCopy)
+      toast.success("Sign up successfully")
+      navigate("/")
+    } catch (error) {
+      // console.log(error)
+      toast.error("Something went wrong")
+    }
+  }
+
   return (
     <section>
       <h1 className='text-3xl text-center mt-6 font-bold' >Sign Up</h1>
@@ -31,7 +61,7 @@ function SignUp() {
           <img src='https://st.depositphotos.com/1316534/2553/i/450/depositphotos_25538373-Womans-hand-holding-keys-to-new-house.jpg' alt='key' className='w-full rounded-2xl' />
         </div>
         <div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20' >
-          <form>
+          <form onSubmit={onSubmit} >
           <input className='mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out' type='text' id='name' value={name} onChange={onChange} placeholder='Full name' />
 
             <input className='mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out' type='email' id='email' value={email} onChange={onChange} placeholder='Email address' />
