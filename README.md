@@ -12,14 +12,14 @@ Rooms is a webapp developed in React for selling and renting houses. Owners can 
 4. Nodejs for server side scripting.
 5. Extra node packages are.
 
-```bash
+```
 react-toastif   ----->  For showing toast messages
 Swiperjs        ----->  For adding sliders.
 react-leaflet   ----->  For showing location of property on map
 ```
 
 6. APIs used
-```bash
+```
 Geocoding Api for converting address of property into latitude and longitude
 use this for further reference : https://geocode.maps.co/
 ```
@@ -27,21 +27,21 @@ use this for further reference : https://geocode.maps.co/
 ## Usage
 
 1. Clone project
-```
+```bash
 git clone https://github.com/deepuyadav004/rooms.git
 ```
 
 2. Move inside project directory
-```
+```bash
 cd rooms
 ```
 3. Run command below command to install all npm packages
-```
+```bash
 npm insall
 ```
 4. Make .env file and put your api keys and firebase keys there and make changes in respective folders.
 5. Run below command to run project in local environment.
-```
+```bash
 npm start
 ```
 
