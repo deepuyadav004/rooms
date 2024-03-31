@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Slider from '../components/Slider'
+import { collection, getDoc, getDocs, limit, orderBy, query } from 'firebase/firestore'
+import { db } from '../firebase'
+import Spinner from '../components/Spinner'
+// import Listing from './Listing'
 
 function Home() {
+
+  
+
   return (
     <div>
-       {/* {console.log(process.env.REACT_APP_API_KEY)}
-       {console.log(process.env.REACT_APP_API_HOST)} */}
-        Home
+       <Slider />
     </div>
   )
 }
