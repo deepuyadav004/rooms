@@ -1,8 +1,8 @@
 # ![Rooms](https://github.com/deepuyadav004/rooms/assets/77964981/85a05592-0556-45d8-ba2a-f0c7a4db15f4)
 
-# Foobar
-
 Rooms is a webapp developed in React for selling and renting houses. Owners can list their properties where as buyers can check property and contact owners through emails for further queries.
+
+## Test Live Site Here : https://rooms-deepu.netlify.app/
 
 ## Tools/Technologies used
 
